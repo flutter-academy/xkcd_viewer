@@ -1,7 +1,14 @@
 class Comic {
-  Comic(this.id, this.pubDate, this.title);
+  Comic(this.href, this.pubDate, this.title);
 
-  final int id;
+  final String href;
   final String pubDate;
   final String title;
+}
+
+class ComicDetails {
+  ComicDetails(this.title, this.imageUrl);
+
+  final String title;
+  final String imageUrl;
 }
