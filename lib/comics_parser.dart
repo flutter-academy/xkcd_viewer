@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:xkcd_viewer/comic.dart';
 
 class ComicsParser {
-  Future<List<Comic>> getComics() async {
+  static Future<List<Comic>> getComics() async {
     const url = 'https://xkcd.com/archive/';
     var content = await http.get(url).then((response) => response.body);
     return parse(content)
@@ -16,8 +16,8 @@ class ComicsParser {
         .toList();
   }
 
-  Future<ComicDetails> getComicDetails(String comicHref) async {
-    var url = 'https://xkcd.com${comicHref}info.0.json';
+  static Future<ComicDetails> getComicDetails(Comic comic) async {
+    var url = 'https://xkcd.com${comic.href}info.0.json';
     return await http.get(url).then((response) {
       var data = json.decode(response.body);
       return ComicDetails(data['title'], data['img']);
